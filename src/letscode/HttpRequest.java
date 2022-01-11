@@ -37,7 +37,7 @@ public class HttpRequest {
                 }}
         );
 
-        String bodyLength = this.headers.get("Content-Length");
+        String bodyLength = this.headers.get(HttpHeader.CONTENT_LENGTH);
         int length = bodyLength != null ? Integer.parseInt(bodyLength) : 0;
         this.body = parts.length > 1 ? parts[1].trim().substring(0, length) : "";
     }

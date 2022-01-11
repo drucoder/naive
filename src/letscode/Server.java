@@ -71,10 +71,7 @@ class Server {
                     String body = this.handler.handle(request, response);
 
                     if (body != null && !body.isBlank()) {
-                        if (response.getHeaders().get("Content-Type") == null) {
-                            response.addHeader("Content-Type", "text/html; charset=utf-8");
-                        }
-
+                        response.getHeaders().putIfAbsent(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8);
                         response.setBody(body);
                     }
                 } catch (Exception e) {
@@ -82,13 +79,13 @@ class Server {
 
                     response.setStatusCode(500);
                     response.setStatus("Internal server error");
-                    response.addHeader("Content-Type", "text/html; charset=utf-8");
+                    response.addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8);
                     response.setBody("<html><body><h1>Error happens</h1></body></html>");
                 }
             } else {
                 response.setStatusCode(404);
                 response.setStatus("Not found");
-                response.addHeader("Content-Type", "text/html; charset=utf-8");
+                response.addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8);
                 response.setBody("<html><body><h1>Resource not found</h1></body></html>");
             }
 

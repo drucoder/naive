@@ -12,8 +12,8 @@ public class HttpResponse {
     private String status = "Ok";
 
     public HttpResponse() {
-        this.headers.put("Server", "naive");
-        this.headers.put("Connection", "Close");
+        this.headers.put(HttpHeader.SERVER, "naive");
+        this.headers.put(HttpHeader.CONNECTION, "Close");
     }
 
     public void addHeader(String key, String value) {
@@ -59,7 +59,7 @@ public class HttpResponse {
     }
 
     public void setBody(String body) {
-        this.headers.put("Content-Length", String.valueOf(body.length()));
+        this.headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(body.length()));
         this.body = body;
     }
 
