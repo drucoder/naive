@@ -77,16 +77,16 @@ class Server {
                 } catch (Exception e) {
                     e.printStackTrace();
 
-                    response.setStatusCode(500);
-                    response.setStatus("Internal server error");
-                    response.addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8);
-                    response.setBody("<html><body><h1>Error happens</h1></body></html>");
+                    response.setStatusCode(500)
+                            .setStatus("Internal server error")
+                            .addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8)
+                            .setBody("<html><body><h1>Error happens</h1></body></html>");
                 }
             } else {
-                response.setStatusCode(404);
-                response.setStatus("Not found");
-                response.addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8);
-                response.setBody("<html><body><h1>Resource not found</h1></body></html>");
+                response.setStatusCode(404)
+                        .setStatus("Not found")
+                        .addHeader(HttpHeader.CONTENT_TYPE, ContentType.TEXT_HTML_UTF8)
+                        .setBody("<html><body><h1>Resource not found</h1></body></html>");
             }
 
             ByteBuffer resp = ByteBuffer.wrap(response.getBytes());
