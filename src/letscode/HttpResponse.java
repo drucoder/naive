@@ -16,12 +16,14 @@ public class HttpResponse {
         this.headers.put(HttpHeader.CONNECTION, "Close");
     }
 
-    public void addHeader(String key, String value) {
+    public HttpResponse addHeader(String key, String value) {
         this.headers.put(key, value);
+        return this;
     }
 
-    public void addHeaders(Map<String, String> headers) {
+    public HttpResponse addHeaders(Map<String, String> headers) {
         this.headers.putAll(headers);
+        return this;
     }
 
     public String message() {
@@ -58,24 +60,27 @@ public class HttpResponse {
         return body;
     }
 
-    public void setBody(String body) {
+    public HttpResponse setBody(String body) {
         this.headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(body.length()));
         this.body = body;
+        return this;
     }
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(int statusCode) {
+    public HttpResponse setStatusCode(int statusCode) {
         this.statusCode = statusCode;
+        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public HttpResponse setStatus(String status) {
         this.status = status;
+        return this;
     }
 }
